@@ -56,6 +56,36 @@ namespace StringCalculatorTests
         }
 
         [Theory]
+        [InlineData(0, "8,4,4")]
+        public void SubtractionTest(int expected, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            int result = Calculator.Subtract(numbers);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(128, "8,4,4")]
+        public void MultiplicationTest(int expected, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            int result = Calculator.Multiply(numbers);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(1, "16,4,4")]
+        public void DivisonTest(int expected, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            float result = Calculator.Divison(numbers);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
         [InlineData("1+2+3 = ", "+", "1,2,3")]
         [InlineData("1-2-3 = ", "-", "1,2,3")]
         [InlineData("1*2*3 = ", "*", "1,2,3")]

@@ -31,8 +31,17 @@ namespace StringCalculator
             maximum_value = Convert.ToInt32(Console.ReadLine());
             numbers = SanitizeNumbers.RemoveBigNumbers(numbers, maximum_value);
 
-            Console.WriteLine(Calculator.DisplayFormula("+", numbers) + Calculator.Add(numbers));
-            
+            Console.Write("\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\nSelect: ");
+            int selection = Convert.ToInt32(Console.ReadLine());
+
+            if (selection == 1)
+                Console.WriteLine(Calculator.DisplayFormula("+", numbers) + Calculator.Add(numbers));
+            else if (selection == 2)
+                Console.WriteLine(Calculator.DisplayFormula("-", numbers) + Calculator.Subtract(numbers));
+            else if (selection == 3)
+                Console.WriteLine(Calculator.DisplayFormula("*", numbers) + Calculator.Multiply(numbers));
+            else if (selection == 4)
+                Console.WriteLine(Calculator.DisplayFormula("/", numbers) + Calculator.Divison(numbers));
         }
     }
 }
