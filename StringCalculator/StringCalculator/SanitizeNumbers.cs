@@ -23,9 +23,9 @@ namespace StringCalculator
             }
         }
 
-        public static List<int> RemoveBigNumbers(List<int> numbers)
+        public static List<int> RemoveBigNumbers(List<int> numbers, int maximum_value = 1000)
         {
-            numbers.RemoveAll(value => value > 1000);
+            numbers.RemoveAll(value => value > maximum_value);
             return numbers;
         }
     }

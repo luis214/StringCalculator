@@ -7,9 +7,9 @@ namespace StringCalculator
 {
     public class Parser
     {
-        public static string[] ParseDelimiters(string input)
+        public static string[] ParseDelimiters(string input, string alt_delimeter = "\n")
         {
-            List<string> delimeters = new List<string>() { ",", "\n" };
+            List<string> delimeters = new List<string>() { ",", alt_delimeter };
 
             // Extract content in between // and \n
             // This regular expression handles step 7 and step 8
