@@ -13,6 +13,7 @@ namespace StringCalculatorTests
         [InlineData(4, "4,")]
         [InlineData(5, "5,xyz")]
         [InlineData(55, "1,2,3,4,5,6,7,8,9,10")]
+        [InlineData(6, "1,2\n3")]
         public void AddTest(int expected, string input)
         {
             string[] delimeters = Parser.ParseDelimiters(input);

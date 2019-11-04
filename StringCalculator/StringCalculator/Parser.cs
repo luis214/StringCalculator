@@ -8,7 +8,7 @@ namespace StringCalculator
     {
         public static string[] ParseDelimiters(string input)
         {
-            string[] delimeters = new string[1] { "," };
+            string[] delimeters = new string[2] { ",", "\n" };
 
             return delimeters;
         }
