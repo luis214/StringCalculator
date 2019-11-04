@@ -10,5 +10,10 @@ namespace StringCalculator
         {
             return numbers.Sum();
         }
+
+        public static string DisplayFormula(string operation, List<int> numbers)
+        {
+            return string.Join(operation, numbers) + " = ";
+        }
     }
 }

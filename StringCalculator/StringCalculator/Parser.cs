@@ -12,6 +12,7 @@ namespace StringCalculator
             List<string> delimeters = new List<string>() { ",", "\n" };
 
             // Extract content in between // and \n
+            // This regular expression handles step 7 and step 8
             string pattern = @"(?<=//)(.*?)\n";
             string delimeter_string = Regex.Match(input, pattern).ToString().Trim();
             if (!String.IsNullOrEmpty(delimeter_string))

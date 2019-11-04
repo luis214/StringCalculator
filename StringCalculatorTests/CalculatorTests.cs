@@ -54,5 +54,19 @@ namespace StringCalculatorTests
             string[] delimeters = Parser.ParseDelimiters(input);
             Assert.Throws<MaximumConstraintException>(() => Parser.ParseNumbers(input, delimeters));
         }
+
+        [Theory]
+        [InlineData("1+2+3 = ", "+", "1,2,3")]
+        [InlineData("1-2-3 = ", "-", "1,2,3")]
+        [InlineData("1*2*3 = ", "*", "1,2,3")]
+        [InlineData("1/2/3 = ", "/", "1,2,3")]
+        public void DisplayFormulaTest(string expected, string operation, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            string result = Calculator.DisplayFormula(operation, numbers);
+            Assert.Equal(expected, result);
+        }
+
     }
 }
