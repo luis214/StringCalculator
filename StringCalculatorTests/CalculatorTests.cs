@@ -35,6 +35,9 @@ namespace StringCalculatorTests
 
         [Theory]
         [InlineData(10, "//#\n1,2\n3#4")]
+        [InlineData(3, "//#\n1#2")]
+        [InlineData(3, "//[!!]\n1!!2")]
+        [InlineData(110, "//[#][!!][r9r]\n11r9r22#33!!44")]
         public void AddTest_WithCustomDelimeters(int expected, string input)
         {
             string[] delimeters = Parser.ParseDelimiters(input);

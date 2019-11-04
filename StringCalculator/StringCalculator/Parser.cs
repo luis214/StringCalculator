@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace StringCalculator
 {
@@ -10,12 +11,23 @@ namespace StringCalculator
         {
             List<string> delimeters = new List<string>() { ",", "\n" };
 
-            //Extract content in between // and \n
+            // Extract content in between // and \n
             string pattern = @"(?<=//)(.*?)\n";
             string delimeter_string = Regex.Match(input, pattern).ToString().Trim();
             if (!String.IsNullOrEmpty(delimeter_string))
             {
-                delimeters.Add(delimeter_string);
+                if (delimeter_string.StartsWith("["))
+                {
+                    // Extract content from all brackets, and add it to the delimeters list
+                    pattern = @"(?<=\[).*?(?=\])";
+                    delimeters.AddRange(Regex.Matches(delimeter_string, pattern)
+                        .Cast<Match>()
+                        .Select(delimeter => delimeter.Value).ToList());
+                }
+                else
+                {
+                    delimeters.Add(delimeter_string);
+                }
             }
 
             return delimeters.ToArray();

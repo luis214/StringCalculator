@@ -9,6 +9,8 @@ namespace StringCalculatorTests
         [Theory]
         [InlineData(new string[] { ",", "\n"}, "1,2")]
         [InlineData(new string[] { ",", "\n", "#" }, "//#\n1,2#3")]
+        [InlineData(new string[] { ",", "\n", "!!!" }, "//[!!!]\n1,2,3")]
+        [InlineData(new string[] { ",", "\n", "*", "!!!", "hh", "r9r" }, "//[*][!!!][hh][r9r]\n1,2,3")]
         public void ParseDelimeterTest(string[] expected, string input)
         {
             string[] result = Parser.ParseDelimiters(input);
@@ -27,6 +29,7 @@ namespace StringCalculatorTests
 
         [Theory]
         [InlineData(new int[] { 1, 2, 3, 4}, "//#\n1,2\n3#4")]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6 }, "//[*][!!!][hh]\n1*2!!!3hh4,5\n6")]
         public void Parse_Delimeters_And_Numbers_Test(IEnumerable<int> expected, string input)
         {
             string[] delimeters = Parser.ParseDelimiters(input);
