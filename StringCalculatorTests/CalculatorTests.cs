@@ -34,6 +34,16 @@ namespace StringCalculatorTests
         }
 
         [Theory]
+        [InlineData(10, "//#\n1,2\n3#4")]
+        public void AddTest_WithCustomDelimeters(int expected, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            int result = Calculator.Add(numbers);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
         [InlineData("1,2,xyz")]
         [InlineData("1,,3")]
         public void ThrowException_MaximumConstraintExceeded(string input)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StringCalculator
 {
@@ -8,16 +8,32 @@ namespace StringCalculator
     {
         public static string[] ParseDelimiters(string input)
         {
-            string[] delimeters = new string[2] { ",", "\n" };
+            List<string> delimeters = new List<string>() { ",", "\n" };
 
-            return delimeters;
+            //Extract content in between // and \n
+            string pattern = @"(?<=//)(.*?)\n";
+            string delimeter_string = Regex.Match(input, pattern).ToString().Trim();
+            if (!String.IsNullOrEmpty(delimeter_string))
+            {
+                delimeters.Add(delimeter_string);
+            }
+
+            return delimeters.ToArray();
         }
 
         public static List<int> ParseNumbers(string input, string[] delimeters)
         {
             List<int> numbers = new List<int>();
             string[] numbers_string;
-            numbers_string = input.Split(delimeters, StringSplitOptions.None);
+            if (input.StartsWith("//"))
+            {
+                int firstNewLineIndex = input.IndexOf('\n');
+                numbers_string = input.Substring(firstNewLineIndex + 1).Split(delimeters, StringSplitOptions.None);
+            }
+            else
+            {
+                numbers_string = input.Split(delimeters, StringSplitOptions.None);
+            }
 
             bool maximum_reached = false;
             foreach (var value in numbers_string)
