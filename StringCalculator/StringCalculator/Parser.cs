@@ -12,7 +12,6 @@ namespace StringCalculator
             List<string> delimeters = new List<string>() { ",", alt_delimeter };
 
             // Extract content in between // and \n
-            // This regular expression handles step 7 and step 8
             string pattern = @"(?<=//)(.*?)\n";
             string delimeter_string = Regex.Match(input, pattern).ToString().Trim();
             if (!String.IsNullOrEmpty(delimeter_string))
@@ -20,6 +19,7 @@ namespace StringCalculator
                 if (delimeter_string.StartsWith("["))
                 {
                     // Extract content from all brackets, and add it to the delimeters list
+                    // This regular expression handles step 7 and step 8
                     pattern = @"(?<=\[).*?(?=\])";
                     delimeters.AddRange(Regex.Matches(delimeter_string, pattern)
                         .Cast<Match>()
