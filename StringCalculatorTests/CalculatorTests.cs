@@ -23,6 +23,17 @@ namespace StringCalculatorTests
         }
 
         [Theory]
+        [InlineData(8, "1,1001,7,2000")]
+        public void AddTest_RemoveBigNumbers(int expected, string input)
+        {
+            string[] delimeters = Parser.ParseDelimiters(input);
+            List<int> numbers = Parser.ParseNumbers(input, delimeters);
+            numbers = SanitizeNumbers.RemoveBigNumbers(numbers);
+            int result = Calculator.Add(numbers);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
         [InlineData("1,2,xyz")]
         [InlineData("1,,3")]
         public void ThrowException_MaximumConstraintExceeded(string input)

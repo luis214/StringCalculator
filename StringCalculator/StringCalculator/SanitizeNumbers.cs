@@ -22,5 +22,11 @@ namespace StringCalculator
                 throw new NegativeNumberException(negativeNumbers);
             }
         }
+
+        public static List<int> RemoveBigNumbers(List<int> numbers)
+        {
+            numbers.RemoveAll(value => value > 1000);
+            return numbers;
+        }
     }
 }
