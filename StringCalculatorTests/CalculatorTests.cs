@@ -12,6 +12,7 @@ namespace StringCalculatorTests
         [InlineData(3, "1,2")]
         [InlineData(4, "4,")]
         [InlineData(5, "5,xyz")]
+        [InlineData(55, "1,2,3,4,5,6,7,8,9,10")]
         public void AddTest(int expected, string input)
         {
             string[] delimeters = Parser.ParseDelimiters(input);
@@ -21,7 +22,6 @@ namespace StringCalculatorTests
         }
 
         [Theory]
-        [InlineData("1,2,3")]
         [InlineData("1,2,xyz")]
         [InlineData("1,,3")]
         public void ThrowException_MaximumConstraintExceeded(string input)

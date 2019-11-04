@@ -15,6 +15,7 @@ namespace StringCalculatorTests
 
         [Theory]
         [InlineData(new int[] { 1, 2 }, "1,2", new string[] { "," })]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6 }, "1,2,3,4,5,6", new string[] { "," })]
         public void ParseNumbersTest(IEnumerable<int> expected, string input, string[] delimeters)
         {
             List<int> result = Parser.ParseNumbers(input, delimeters);
