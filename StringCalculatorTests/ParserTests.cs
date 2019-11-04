@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 using StringCalculator;
+
 namespace StringCalculatorTests
 {
     public class ParserTests
